@@ -1,0 +1,21 @@
+<form [formGroup]="orderForm">
+
+
+  <table>
+    <tbody formArrayName="test" *ngFor="let item of orderForm.get('items')['controls']; let i = index;">
+    <tr [formGroupName]="i">
+      <td><input formControlName="name" placeholder="Item name"></td>
+      <td><input formControlName="description" placeholder="Item description"></td>
+      <td><input formControlName="price" placeholder="Item price"></td>
+      <td class="text-center">
+      <a href="javascript:void(0)" (click)="deleteItem(i)">
+        ลบ
+      </a>
+    </td>
+      <td>Exposed item name: {{ orderForm.controls.items.controls[i].controls.name.value }}</td>
+    </tr>
+  </tbody>
+  </table>
+
+  <button type="button" (click)="addItem()">Add Item</button>
+</form>
